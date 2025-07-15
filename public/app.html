@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MikuVerse - Comunidad</title>
+    <link rel="icon" href="/images/logo.png" type="image/png">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <button id="sidebar-toggle" title="Ocultar menú">‹</button>
+        <div class="sidebar-header">
+            <img src="/images/logo.png" alt="Logo">
+            <h2>MikuVerse</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#chat" class="nav-link"><span class="nav-icon">💬</span><span class="nav-text">Chat Global</span></a>
+            <a href="#gallery" class="nav-link"><span class="nav-icon">🖼️</span><span class="nav-text">Galería</span></a>
+            <a href="#music" class="nav-link"><span class="nav-icon">🎵</span><span class="nav-text">Música</span></a>
+            <a href="#profile" class="nav-link"><span class="nav-icon">👤</span><span class="nav-text">Mi Perfil</span></a>
+        </nav>
+    </div>
+
+    <div class="main-container">
+        <header class="main-header" id="main-header"></header>
+        <main class="main-content">
+            <div id="chat-view" class="view">
+                <div class="messages"></div>
+                <div class="input-area">
+                    <textarea id="message-input" placeholder="Escribe un mensaje..." rows="1"></textarea>
+                    <button id="send-button">Enviar</button>
+                </div>
+            </div>
+
+            <div id="gallery-view" class="view">
+                <h1>Galería de Fan-Art</h1>
+                <p>Esta sección está en construcción.</p>
+            </div>
+
+            <div id="music-view" class="view">
+                <h1>Música</h1>
+                <p>Esta sección está en construcción.</p>
+            </div>
+
+            <div id="profile-view" class="view">
+                <div class="profile-card">
+                    <form id="profile-form">
+                        <h2>Editar Mi Perfil</h2>
+                        <div id="profile-message" class="message-feedback"></div>
+                        <div class="profile-avatar">
+                            <img id="profile-avatar-img" src="/images/logo.png" alt="Avatar">
+                        </div>
+                        <label for="profile-username">Nombre de Usuario</label>
+                        <input type="text" id="profile-username">
+
+                        <label for="profile-email">Correo Electrónico</label>
+                        <input type="email" id="profile-email" readonly title="El correo electrónico no se puede cambiar.">
+                        
+                        <label for="profile-avatar-url">URL del Avatar</label>
+                        <input type="url" id="profile-avatar-url" placeholder="https://ejemplo.com/imagen.png">
+
+                        <label for="profile-bio">Biografía</label>
+                        <textarea id="profile-bio" rows="4" placeholder="Cuéntanos un poco sobre ti..."></textarea>
+                        
+                        <hr>
+                        <h3>Cambiar Contraseña</h3>
+                        <label for="profile-current-password">Contraseña Actual</label>
+                        <input type="password" id="profile-current-password" placeholder="Deja en blanco si no quieres cambiarla",autocomplete="new-password">
+                        
+                        <label for="profile-new-password">Nueva Contraseña</label>
+                        <input type="password" id="profile-new-password" placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+                        
+                        <button type="submit">Guardar Cambios</button>
+                    </form>
+                    <hr>
+                    <button id="logout-btn">Cerrar Sesión</button>
+                </div>
+            </div>
+
+            <div id="public-profile-view" class="view">
+                <div class="profile-card">
+                    <div id="public-profile-content">
+                        <!-- El contenido se llenará con JavaScript -->
+                        <div class="loading-spinner">Cargando perfil...</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="/app.js"></script>
+    <script src="/router.js"></script>
+</body>
+</html>

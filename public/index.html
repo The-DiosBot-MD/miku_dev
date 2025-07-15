@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MikuVerse - Bienvenido 🌸</title>
+    <link rel="icon" href="/images/logo.png" type="image/png">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link rel="stylesheet" href="/css/auth.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: #333;
+        }
+        .auth-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px 30px;
+            background-color: rgba(255, 192, 203, 0.8);
+            border-radius: 30px;
+            box-shadow: 0 0 20px #ffcce6;
+            border: 3px dashed #ffc0cb;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffb6c1;
+            border: 3px solid #ffc0cb;
+            background-color: #fff0f5;
+            clip-path: ellipse(60% 70% at 50% 50%);
+            object-fit: cover;
+            animation: anim 1s ease-out forwards;
+            opacity: 0;
+            margin-bottom: 20px;
+        }
+        @keyframes anim {
+            0% {
+            transform: scale(0.5);
+            opacity: 0;
+            }
+            100% {
+            transform: scale(1);
+            opacity: 1;
+            }
+        }
+        h2 {
+            font-size: 24px;
+            color: #d63384;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid #d36d8c;
+            border-radius: 8px;
+            background-color: rgba(255, 192, 203, 0.8);
+            font-size: 16px;
+            box-sizing: border-box;
+            backdrop-filter: blur(4px);
+        }
+
+
+        button {
+            width: 100%;
+            padding: 12px 16px;
+            background: linear-gradient(90deg, #ff94c2, #ffb6d4);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 148, 194, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #ff85b6, #ffabc6);
+            box-shadow: 0 6px 14px rgba(255, 148, 194, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-google {
+            background: linear-gradient(90deg, #4285F4, #6ba6f9);
+            color: #fff;
+            margin-top: 10px;
+            box-shadow: 0 4px 10px rgba(66, 133, 244, 0.3);
+        }
+
+        .btn-google:hover {
+            background: linear-gradient(90deg, #3073e5, #5895f7);
+            box-shadow: 0 6px 14px rgba(66, 133, 244, 0.45);
+        }
+
+        .divider {
+            margin: 20px 0;
+            color: #999;
+        }
+        .extra-links a {
+            display: block;
+            margin-top: 10px;
+            color: #d63384;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+        .error-message {
+            color: #e63946;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+        }
+        .login-icons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .btn-icon {
+            width: 48px;
+            height: 48px;
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        </style>
+</head>
+<body>
+    <div class="auth-container">
+        <img src="/images/logo.png" alt="Logo" class="logo">
+        <div id="error-message" class="error-message"></div>
+
+        <div id="login-view" class="auth-form active">
+            <h2>Iniciar Sesión</h2>
+            <form id="login-form">
+                <input type="text" id="login-identifier" name="identifier" placeholder="Usuario o Correo electrónico" required>
+                <input type="password" id="login-password" name="password" placeholder="Contraseña" required>
+                <div id="turnstile-login-widget"></div>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+            <div class="divider">O</div>
+                <a href="/api/auth/google"><button class="btn-google">Continuar con Google</button></a>
+                <a href="/api/auth/google" class="btn-icon" title="Google">
+                    <img src="/icons/google.png" alt="Google">
+                </a>
+                <a href="/api/auth/github" class="btn-icon" title="GitHub">
+                    <img src="/icons/github.png" alt="GitHub">
+                </a>
+                <a href="/api/auth/facebook" class="btn-icon" title="Facebook">
+                    <img src="/icons/facebook.png" alt="Facebook">
+                </a>
+
+
+            <div class="extra-links">
+                <a id="show-register">¿No tienes cuenta? Regístrate</a>
+            </div>
+        </div>
+
+        <div id="register-view" class="auth-form">
+            <h2>Crear Cuenta</h2>
+            <form id="register-form">
+                <input type="text" id="register-username" name="username" placeholder="Nombre de usuario" required>
+                <input type="email" id="register-email" name="email" placeholder="Correo electrónico" required>
+                <input type="password" id="register-password" name="password" placeholder="Contraseña" required>
+                <div id="turnstile-register-widget"></div>
+                <button type="submit">Crear cuenta</button>
+            </form>
+            <div class="divider">O</div>
+            <a href="/api/auth/google"><button class="btn-google">Registrarse con Google</button></a>
+            <div class="extra-links">
+                <a id="show-login">¿Ya tienes cuenta? Inicia sesión</a>
+            </div>
+        </div>
+        
+        <!-- este es para el registro por google -->
+        <div id="google-complete-view" class="auth-form">
+            <h2>Completa tu Perfil</h2>
+            <p>Elige un nombre de usuario y una contraseña para tu cuenta.</p>
+            <form id="google-complete-form">
+                <input type="hidden" name="tempToken" id="google-temp-token">
+                <input type="email" id="google-email" name="email" placeholder="Correo electrónico" readonly>
+                <input type="text" id="google-username" name="username" placeholder="Elige un nombre de usuario" required>
+                <input type="password" id="google-password" name="password" placeholder="Crea una contraseña" required>
+                <div id="turnstile-google-widget"></div>
+                <button type="submit">Finalizar Registro</button>
+            </form>
+        </div>
+
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

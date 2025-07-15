@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MikuVerse API - Ejemplo de Uso</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+        .view { display: none; border: 1px solid #ccc; padding: 15px; margin-top: 15px; }
+        .view.active { display: block; }
+        input, button { padding: 8px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        #chat-messages { height: 300px; overflow-y: auto; border: 1px solid #eee; padding: 10px; margin-bottom: 10px; }
+        .message { margin-bottom: 10px; }
+        .message b { color: #007bff; }
+        pre { background-color: #f4f4f4; padding: 10px; white-space: pre-wrap; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <h1>Ejemplo de API MikuVerse</h1>
+
+    <!-- Vista de Autenticación -->
+    <div id="auth-view" class="view active">
+        <h2>Autenticación</h2>
+        <form id="login-form">
+            <h3>Login</h3>
+            <input type="text" id="login-identifier" placeholder="Usuario o Correo">
+            <input type="password" id="login-password" placeholder="Password" value="password123">
+            <button type="submit">Login</button>
+        </form>
+         <hr>
+        <form id="register-form">
+            <h3>Registro</h3>
+            <input type="text" id="reg-username" placeholder="Username" value="TestUser1">
+            <input type="email" id="reg-email" placeholder="Email" value="testuser1@example.com">
+            <input type="password"id="reg-password" placeholder="Password" value="password123">
+            <button type="submit">Registrarse</button>
+            <p><small>Nota: Este ejemplo no incluye el widget de Cloudflare para simplificar.</small></p>
+        </form>
+    </div>
+
+    <!-- Vista de la App (Chat y Perfil) -->
+    <div id="app-view" class="view">
+        <button id="logout-btn">Cerrar Sesión</button>
+        <hr>
+        <h2>Mi Perfil</h2>
+        <pre id="profile-info"></pre>
+        <hr>
+        <h2>Chat Global</h2>
+        <div id="chat-messages"></div>
+        <form id="chat-form">
+            <input type="text" id="chat-input" placeholder="Escribe un mensaje..." autocomplete="off">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="example.js"></script>
+</body>
+</html>
