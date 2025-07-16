@@ -97,7 +97,7 @@ app.use( //Version 2.0
           `ws://localhost:${config.server.port}`, // Para desarrollo local (WebSocket)
           `wss://localhost:${config.server.port}`, // Para desarrollo local (WebSocket Secure, si usas HTTPS)
           // Para producción, DEBES cambiar a tu dominio real, ejemplo:
-          // "wss://your-mikuverse-domain.com",
+          // "wss://your-mikudev-domain.com",
           "https://api.dicebear.com" // Si tu frontend hace fetch directo a DiceBear (antes del proxy)
           // Si usas el patrón de proxy que te di, esta línea para dicebear no sería estrictamente necesaria aquí,
           // ya que el frontend solo llama a tu propio dominio para la imagen.
@@ -140,7 +140,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(passport.initialize());
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'MikuVerse Backend is running!' });
+  res.json({ status: 'OK', message: 'MikuDev Backend is running!' });
 });
 
 app.use('/api/auth', authRoutes);

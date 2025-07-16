@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.history.replaceState({}, document.title, "/app.html" + window.location.hash);
     }
     
-    const canProceed = MikuVerse.init();
+    const canProceed = MikuDev.init();
     
     if (canProceed) {
         Router.init();

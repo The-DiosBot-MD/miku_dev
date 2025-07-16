@@ -1,6 +1,6 @@
-# MikuVerse Community - Guía Completa de la API
+# MikuDev Community - Guía Completa de la API
 
-¡Bienvenido al equipo! Este documento es tu guía definitiva para interactuar con el backend de MikuVerse. Cubre la API RESTful, los eventos de WebSockets (Socket.IO) y proporciona ejemplos prácticos de cómo usar cada funcionalidad desde el frontend.
+¡Bienvenido al equipo! Este documento es tu guía definitiva para interactuar con el backend de MikuDev. Cubre la API RESTful, los eventos de WebSockets (Socket.IO) y proporciona ejemplos prácticos de cómo usar cada funcionalidad desde el frontend.
 
 ## Tabla de Contenidos
 
@@ -297,7 +297,7 @@ Todos los endpoints que modifican o requieren información privada del perfil ne
       "username": "UsuarioEjemplo",
       "email": "usuario@ejemplo.com",
       "avatarUrl": "https://api.dicebear.com/...",
-      "bio": "¡Hola, soy un usuario de MikuVerse!",
+      "bio": "¡Hola, soy un usuario de MikuDev!",
       "role": "user",
       "createdAt": "2024-07-14T10:00:00.000Z",
       "updatedAt": "2024-07-14T11:00:00.000Z"
@@ -473,7 +473,7 @@ async function updateMyProfile(newProfileData) {
     ```json
     {
       "status": "OK",
-      "message": "MikuVerse Backend is running!"
+      "message": "MikuDev Backend is running!"
     }
     ```
 
@@ -550,7 +550,7 @@ socket.on('connect_error', (err) => {
 socket.on('user_profile', (user) => {
     console.log('Perfil de usuario recibido via Socket:', user);
     // Rellenar la UI de "Mi Perfil" con user.username, user.email, user.avatarUrl, user.bio, etc.
-    // Ejemplo (adaptado a tu estructura MikuVerse.renderProfileView):
+    // Ejemplo (adaptado a tu estructura MikuDev.renderProfileView):
     // window.Client.renderProfileView(user);
 });
 ```
