@@ -20,23 +20,23 @@ Message.belongsTo(User, { foreignKey: 'userId' });
 
 const app = express();
 
-//app.use(helmet({ contentSecurityPolicy: false })); // Basico por si algo falla o pra testear
-app.use( //Version 2.0
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "https://challenges.cloudflare.com", "https://cdn.socket.io"],
-        styleSrc: ["'self'", "'unsafe-inline'"],
-        imgSrc: ["'self'", "data:", "https://lh3.googleusercontent.com", "https://api.dicebear.com"],
-        connectSrc: ["'self'", "https://challenges.cloudflare.com", "wss:", "ws:"],
-        frameSrc: ["'self'", "https://challenges.cloudflare.com"],
-        objectSrc: ["'none'"],
-        upgradeInsecureRequests: [],
-      },
-    },
-  })
-);
+app.use(helmet({ contentSecurityPolicy: false })); // Basico por si algo falla o pra testear
+//app.use( //Version 2.0
+//  helmet({
+//    contentSecurityPolicy: {
+//      directives: {
+//        defaultSrc: ["'self'"],
+//        scriptSrc: ["'self'", "https://challenges.cloudflare.com", "https://cdn.socket.io"],
+//        styleSrc: ["'self'", "'unsafe-inline'"],
+//        imgSrc: ["'self'", "data:", "https://lh3.googleusercontent.com", "https://api.dicebear.com"],
+//        connectSrc: ["'self'", "https://challenges.cloudflare.com", "wss:", "ws:"],
+//        frameSrc: ["'self'", "https://challenges.cloudflare.com"],
+//        objectSrc: ["'none'"],
+//        upgradeInsecureRequests: [],
+//      },
+//    },
+//  })
+//);
 /*app.use(
   helmet({
     // si no se entienden completamente. En una aplicación de misión crítica, se estudiarían más a fondo.
