@@ -381,13 +381,11 @@ check_critical npm install
 print_success "Dependencias de Node.js instaladas."
 
 print_info "Iniciando/Reiniciando la aplicación con PM2 bajo el usuario '$SYSTEM_USER'..."
-# PUNTO DE ENTRADA CORREGIDO: src/server.js
 sudo -u "$SYSTEM_USER" -H bash -c "cd $APP_PATH && pm2 start-or-restart src/server.js --name $APP_NAME"
 
-check_critical pm2 startup
+print_info "Configurando el inicio automático de PM2..."
 
-# Capturamos el comando sugerido por PM2
-PM2_STARTUP_CMD=$(pm2 startup | grep -m1 "sudo")
+PM2_STARTUP_CMD=$(sudo -u "$SYSTEM_USER" -H bash -c "pm2 startup | grep -m1 'sudo'")
 
 if [ -n "$PM2_STARTUP_CMD" ]; then
     print_info "PM2 ha generado el siguiente comando para configurar el autoarranque:"
@@ -408,8 +406,9 @@ else
     c_red "PM2 no pudo generar un comando de inicio automático. Revisa la instalación y el entorno."
 fi
 
-check_critical pm2 save
-print_success "Aplicación iniciada/actualizada con PM2."
+print_info "Guardando la lista de procesos de PM2..."
+sudo -u "$SYSTEM_USER" -H bash -c "pm2 save"
+print_success "Aplicación iniciada/actualizada con PM2 y lista de procesos guardada."
 
 # --- Conclusión ---
 print_header "¡Despliegue Completado!"
