@@ -381,7 +381,7 @@ check_critical npm install
 print_success "Dependencias de Node.js instaladas."
 
 print_info "Iniciando/Reiniciando la aplicación con PM2 bajo el usuario '$SYSTEM_USER'..."
-sudo -u "$SYSTEM_USER" -H bash -c "cd $APP_PATH && pm2 start-or-restart src/server.js --name $APP_NAME"
+sudo -u "$SYSTEM_USER" -H bash -c "cd $APP_PATH && pm2 start src/server.js --name $APP_NAME"
 
 print_info "Configurando el inicio automático de PM2..."
 
